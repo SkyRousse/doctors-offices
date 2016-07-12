@@ -35,7 +35,7 @@ describe('view patient path', {:type => :feature}) do
     expect(page).to have_content('DR Hollemans Practice')
     patient = Patient.new({:doctors_office_id => doctors_office.id(), :name => 'John', :birthdate => '1990-07-08'})
     patient.save()
-    visit("/patients")
+    visit("/doctors_offices/#{doctors_office.id()}")
     expect(page).to have_content('John 1990-07-08')
   end
 end
