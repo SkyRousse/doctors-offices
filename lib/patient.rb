@@ -15,7 +15,7 @@ class Patient
     returned_patients = DB.exec("SELECT * FROM patients ORDER BY name ASC;")
     patients = []
     returned_patients.each() do |patient|
-      doctors_office_id = patient.fetch("doctors_office_id").to_i
+      doctors_office_id = patient.fetch("doctors_office_id").to_i()
       name = patient.fetch("name")
       birthdate = patient.fetch("birthdate")
       patients.push(Patient.new({:doctors_office_id => doctors_office_id, :name => name, :birthdate => birthdate}))
