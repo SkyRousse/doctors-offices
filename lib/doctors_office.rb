@@ -7,8 +7,12 @@ class DoctorsOffice
     @specialty = attributes.fetch(:specialty)
   end
 
+  define_method(:==) do |another_doctors_office|
+    self.id().==(another_doctors_office.id()).&(self.name().==(another_doctors_office.name())).&(self.specialty().==(another_doctors_office.specialty()))
+  end
+
   define_singleton_method(:all) do
-    returned_doctors_offices = DB.exec('SELECT * FROM doctors_offices;')
+    returned_doctors_offices = DB.exec('SELECT * FROM doctors_offices ORDER BY name ASC;')
     doctors_offices = []
     returned_doctors_offices.each() do |doctors_office|
       id = doctors_office.fetch('id').to_i
@@ -19,13 +23,19 @@ class DoctorsOffice
     doctors_offices
   end
 
-  define_method(:==) do |another_doctors_office|
-    self.id().==(another_doctors_office.id()).&(self.name().==(another_doctors_office.name())).&(self.specialty().==(another_doctors_office.specialty()))
-  end
-  
   define_method(:save) do
     result = DB.exec("INSERT INTO doctors_offices (name, specialty) VALUES ('#{@name}', '#{@specialty}') RETURNING id;")
     @id = result.first().fetch('id').to_i()
+  end
+
+  define_singleton_method(:find) do |id|
+    found_doctors_office = nil
+    DoctorsOffice.all().each() do |doctors_office|
+      if doctors_office.id().==(id)
+        found_doctors_office = doctors_office
+      end
+    end
+    found_doctors_office
   end
 
 end

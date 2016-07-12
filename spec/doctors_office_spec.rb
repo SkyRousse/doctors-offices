@@ -45,4 +45,22 @@ describe(DoctorsOffice) do
     end
   end
 
+  describe('.find') do
+    it('returns a doctors office by its id') do
+      doctors_office1 = DoctorsOffice.new({:id => nil, :name => 'DR Hollemans Practice', :specialty => 'general care'})
+      doctors_office1.save()
+      doctors_office2 = DoctorsOffice.new({:id => nil, :name => 'DR Hollemans Practice', :specialty => 'general care'})
+      doctors_office2.save()
+      expect(DoctorsOffice.find(doctors_office1.id())).to(eq(doctors_office1))
+    end
+  end
+
+  # describe('#patients') do
+  #   it('returns an array of patients for a specific doctors office') do
+  #     doctors_office1 = DoctorsOffice.new({:id => nil, :name => 'DR Hollemans Practice', :specialty => 'general care'})
+  #     doctors_office1.save()
+  #
+  #   end
+  # end
+
 end
