@@ -3,7 +3,7 @@
   <table>
     <% @doctors_offices.each() do |doctors_office| %>
     <tr>
-      <td><a href="/doctors_office/:id/patients"><%= doctors_office.name() %></a></td>
+      <td><a href="/doctors_offices/<%= doctors_office.id() %>"><%= doctors_office.name() %></a></td>
       <td><%= doctors_office.specialty() %></td>
     </tr>
     <% end %>

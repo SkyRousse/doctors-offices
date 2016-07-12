@@ -63,7 +63,7 @@ describe(DoctorsOffice) do
       patient1.save()
       patient2 = Patient.new({:doctors_office_id => doctors_office1.id(), :name => 'Jane', :birthdate => '2000-05-09'})
       patient2.save()
-      expect(doctors_office1.patient()).to(eq([patient1, patient2]))
+      expect(doctors_office1.patients()).to(eq([patient1, patient2]))
     end
   end
 

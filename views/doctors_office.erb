@@ -1,4 +1,5 @@
 <h1><%= @doctors_office.name() %></h1>
+
 <% if @doctors_office.patients().any?() %>
   <h3>Here are all the patients for this Doctors Office in this Database</h3>
   <table>
@@ -12,4 +13,22 @@
 <% else %>
   <h3>There are no patients for this doctors office yet; Add one below.</h3>
 <% end %>
-<a href="/patient/new"><button type="button" name="button">Add New Patient</button></a>
+
+<hr>
+
+<h3>Add a patient to <% @doctors_office.name() %></h3>
+
+<form action="/patients" method="post">
+  <input type="hidden" name="doctors_office_id" id="doctors_office_id" value="<%= @doctors_office.id() %>">
+
+  <label for="name">Patient Name:</label>
+  <input type="text" name="name" id="name">
+  <label for="birthdate">Patient Birthdate:</label>
+  <input type="text" name="birthdate" id="birthdate">
+
+  <button type="submit">Add Patient</button>
+</form>
+
+<hr>
+
+<a href="/">Return to Doctor Office List</a>

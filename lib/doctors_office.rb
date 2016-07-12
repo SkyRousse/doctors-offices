@@ -38,7 +38,7 @@ class DoctorsOffice
     found_doctors_office
   end
 
-  define_method(:patient) do
+  define_method(:patients) do
     doctors_office_patients = []
     patients = DB.exec("SELECT * FROM patients WHERE doctors_office_id = #{self.id()}")
     patients.each() do |patient|
