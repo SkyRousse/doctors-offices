@@ -1,0 +1,15 @@
+<h1><%= @doctors_office.name() %></h1>
+<% if @doctors_office.patients().any?() %>
+  <h3>Here are all the patients for this Doctors Office in this Database</h3>
+  <table>
+    <% @doctors_office.patients().each() do |patient| %>
+    <tr>
+      <td><%= patient.name() %></td>
+      <td><%= patient.birthdate() %></td>
+    </tr>
+    <% end %>
+  </table>
+<% else %>
+  <h3>There are no patients for this doctors office yet; Add one below.</h3>
+<% end %>
+<a href="/patient/new"><button type="button" name="button">Add New Patient</button></a>

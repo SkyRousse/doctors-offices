@@ -1,13 +1,14 @@
-<% if @doctors_offices.!=("#") %>
+<% if @doctors_offices.any?() %>
   <h3>Here are all the Doctors Offices in this Database</h3>
   <table>
     <% @doctors_offices.each() do |doctors_office| %>
     <tr>
-
+      <td><a href="/doctors_office/:id/patients"><%= doctors_office.name() %></a></td>
+      <td><%= doctors_office.specialty() %></td>
     </tr>
     <% end %>
   </table>
 <% else %>
-  <h3>There are no doctors offices yet add one below</h3>
+  <h3>There are no doctors offices yet; Add one below.</h3>
 <% end %>
-<a href="/"><button type="button" name="button">Add New Office</button></a>
+<a href="/doctors_office/new"><button type="button" name="button">Add New Office</button></a>

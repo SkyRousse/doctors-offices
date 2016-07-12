@@ -55,12 +55,16 @@ describe(DoctorsOffice) do
     end
   end
 
-  # describe('#patients') do
-  #   it('returns an array of patients for a specific doctors office') do
-  #     doctors_office1 = DoctorsOffice.new({:id => nil, :name => 'DR Hollemans Practice', :specialty => 'general care'})
-  #     doctors_office1.save()
-  #
-  #   end
-  # end
+  describe('#patients') do
+    it('returns an array of patients for a specific doctors office') do
+      doctors_office1 = DoctorsOffice.new({:id => nil, :name => 'DR Hollemans Practice', :specialty => 'general care'})
+      doctors_office1.save()
+      patient1 = Patient.new({:doctors_office_id => doctors_office1.id(), :name => 'Noah', :birthdate => '1998-05-09'})
+      patient1.save()
+      patient2 = Patient.new({:doctors_office_id => doctors_office1.id(), :name => 'Jane', :birthdate => '2000-05-09'})
+      patient2.save()
+      expect(doctors_office1.patient()).to(eq([patient1, patient2]))
+    end
+  end
 
 end
